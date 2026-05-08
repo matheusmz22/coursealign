@@ -1,12 +1,12 @@
 import CalendarGrid from "../Calendar/CalendarGrid";
 import CalendarHeader from "../Calendar/CalendarHeader";
 
-function CalendarView() {
+function CalendarView({selectedSchedule}) {
   return (
     <main className="flex flex-col h-screen">
-      <CalendarHeader />
+      <CalendarHeader selectedSchedule={selectedSchedule} />
       <div className="overflow-y-auto flex-1">
-        <CalendarGrid />
+        <CalendarGrid selectedSchedule={selectedSchedule} />
       </div>
     </main>
   );

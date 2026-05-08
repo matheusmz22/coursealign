@@ -8,6 +8,10 @@ function AppLayout({
   setEarliestStart,
   latestEnd,
   setLatestEnd,
+  schedules,
+  setSchedules,
+  selectedSchedule,
+  setSelectedSchedule,
 }) {
   return (
     <div className="grid grid-cols-[320px_1fr] h-screen bg-brand-dark-3">
@@ -18,9 +22,13 @@ function AppLayout({
         setEarliestStart={setEarliestStart}
         latestEnd={latestEnd}
         setLatestEnd={setLatestEnd}
+        schedules={schedules}
+        setSchedules={setSchedules}
+        selectedSchedule={selectedSchedule}
+        setSelectedSchedule={setSelectedSchedule}
       />
       <main className="overflow-y-auto h-screen ">
-        <CalendarView />
+        <CalendarView selectedSchedule={selectedSchedule} />
       </main>
     </div>
   );

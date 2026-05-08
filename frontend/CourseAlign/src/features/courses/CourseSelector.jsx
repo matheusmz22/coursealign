@@ -1,9 +1,8 @@
 import {useState} from "react";
 import {FiPlus, FiX} from "react-icons/fi";
 
-function CourseSelector({courses, setCourses}) {
+function CourseSelector({courses, setCourses, error, setError}) {
   let [input, setInput] = useState("");
-  const [error, setError] = useState("");
 
   function handleRemoveCourse(course) {
     setCourses((courseList) =>
