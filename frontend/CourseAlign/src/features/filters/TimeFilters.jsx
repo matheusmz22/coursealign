@@ -22,42 +22,36 @@ function TimeFilters({
   setLatestEnd,
 }) {
   return (
-    <div className="mt-3 mb-5">
+    <div className="mb-2 lg:mt-3 lg:mb-5">
       <p className="opacity-65 mb-3 text-[14px] uppercase font-semibold">
         Time Preferences
       </p>
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-1">
-          <span className="opacity-50 text-sm">Earliest Start:</span>
+
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1">
+        <div className="flex flex-col gap-1">
+          <span className="opacity-60 text-sm">Earliest Start</span>
           <select
-            className="bg-brand-dark-1 rounded-sm cursor-pointer text-xs"
+            className="h-10 rounded-lg border border-border/60 bg-brand-dark-1 px-2 text-sm cursor-pointer"
             value={earliestStart}
             onChange={(e) => setEarliestStart(e.target.value)}
           >
             {timeOptions.map((option) => (
-              <option
-                className="text-text-primary-light"
-                key={option.value}
-                value={option.value}
-              >
+              <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}
           </select>
         </div>
-        <div className="flex items-center gap-1">
-          <span className="opacity-50 text-sm">Latest end:</span>
+
+        <div className="flex flex-col gap-1">
+          <span className="opacity-60 text-sm">Latest End</span>
           <select
-            className="bg-brand-dark-1 rounded-sm cursor-pointer text-xs"
+            className="h-10 rounded-lg border border-border/60 bg-brand-dark-1 px-2 text-sm cursor-pointer"
             value={latestEnd}
             onChange={(e) => setLatestEnd(e.target.value)}
           >
             {timeOptions.map((option) => (
-              <option
-                className="text-text-primary-light"
-                key={option.value}
-                value={option.value}
-              >
+              <option key={option.value} value={option.value}>
                 {option.label}
               </option>
             ))}

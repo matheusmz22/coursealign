@@ -18,7 +18,7 @@ function Sidebar({
   const [error, setError] = useState("");
 
   return (
-    <aside className=" overflow-y-auto border-border/50 border-r">
+    <aside className="w-full shrink-0 overflow-y-auto border-border/50 border-b px-4 py-5 lg:h-screen lg:w-[22rem] lg:border-r lg:border-b-0 lg:px-0 lg:py-0">
       <div className="mx-auto mt-8 mb-10 w-fit rounded-2xl bg-white/8 px-5 py-4 ring-1 ring-white/10">
         <img src="logo.png" className="h-30 w-30 mx-auto mt-2" />
       </div>

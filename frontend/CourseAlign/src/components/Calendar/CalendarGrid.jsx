@@ -17,12 +17,12 @@ const BLOCK_COLORS = [
 
 function CalendarGrid({selectedSchedule}) {
   return (
-    <div className="text-text-secondary-light">
-      {/* DAYS HEADER - FIXED ON TOP*/}
-      <div className="grid grid-cols-[60px_repeat(5,1fr)]">
+    <div className="min-w-[760px] lg:mt-5 text-text-muted sm:min-w-[900px] lg:min-w-0">
+      {/* DAYS HEADER */}
+      <div className="sticky top-0 z-20 grid grid-cols-[50px_repeat(5,minmax(130px,1fr))] bg-bg-app lg:grid-cols-[60px_repeat(5,1fr)]">
         <div />
         {days.map((day) => (
-          <div key={day} className="text-center text-xs font-medium py-2">
+          <div key={day} className="py-2 text-center text-xs font-medium">
             {day}
           </div>
         ))}
@@ -30,27 +30,28 @@ function CalendarGrid({selectedSchedule}) {
 
       <div className="relative">
         {/* HORIZONTAL LINES */}
-        <div className="grid grid-cols-[60px_repeat(5,1fr)]">
+        <div className="grid grid-cols-[50px_repeat(5,minmax(130px,1fr))] lg:grid-cols-[60px_repeat(5,1fr)]">
           {hours.map((hour) => (
             <Fragment key={hour}>
-              <div className="text-xs text-right pr-2 pt-1 opacity-50">
+              <div className="pr-2 pt-1 text-right text-xs opacity-50">
                 {hour > 12 ? `${hour - 12}PM` : `${hour}AM`}
               </div>
-              {days.map((day, index) => (
-                <div key={index} className="border border-border min-h-15" />
+
+              {days.map((day) => (
+                <div key={day} className="min-h-15 border border-border" />
               ))}
             </Fragment>
           ))}
         </div>
 
-        {/* CLASSES BLOCKS COLUMN */}
-        <div className="absolute inset-0 grid grid-cols-[60px_repeat(5,1fr)]">
+        {/* CLASS BLOCKS */}
+        <div className="absolute inset-0 grid grid-cols-[50px_repeat(5,minmax(130px,1fr))] lg:grid-cols-[60px_repeat(5,1fr)]">
           <div />
+
           {days.map((day) => (
             <div key={day} className="relative">
-              {/* CLASSES */}
               {selectedSchedule?.sections
-                .map((section, sectionIndex) => ({
+                ?.map((section, sectionIndex) => ({
                   ...section,
                   colorIndex: sectionIndex,
                 }))
@@ -58,29 +59,34 @@ function CalendarGrid({selectedSchedule}) {
                 .map((classDay) => {
                   const color =
                     BLOCK_COLORS[classDay.colorIndex % BLOCK_COLORS.length];
+
                   return (
                     <div
                       style={{
                         position: "absolute",
                         top: `${getTopPosition(classDay.startTime)}px`,
-                        height: `${getBlockHeight(classDay.startTime, classDay.endTime)}px`,
-                        left: "2px",
-                        right: "2px",
+                        height: `${getBlockHeight(
+                          classDay.startTime,
+                          classDay.endTime,
+                        )}px`,
+                        left: "3px",
+                        right: "3px",
                         backgroundColor: color.bg,
                         borderLeft: `3px solid ${color.border}`,
                       }}
-                      key={classDay?.courseCode}
-                      className="rounded-md p-1 overflow-hidden"
+                      key={`${classDay.courseCode}-${day}-${classDay.startTime}`}
+                      className="overflow-hidden rounded-md p-1 shadow-sm"
                     >
                       <p
                         style={{color: color.text}}
-                        className="text-xs font-semibold"
+                        className="truncate text-xs font-semibold"
                       >
                         {classDay.courseCode}
                       </p>
+
                       <p
                         style={{color: color.text}}
-                        className="text-[10px] opacity-70"
+                        className="truncate text-[10px] opacity-70"
                       >
                         {classDay.instructor}
                       </p>

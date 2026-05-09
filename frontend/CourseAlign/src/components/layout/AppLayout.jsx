@@ -14,7 +14,7 @@ function AppLayout({
   setSelectedSchedule,
 }) {
   return (
-    <div className="grid grid-cols-[320px_1fr] h-screen bg-brand-dark-3">
+    <div className="min-h-screen bg-bg-app lg:flex lg:h-screen lg:overflow-hidden">
       <Sidebar
         courses={courses}
         setCourses={setCourses}
@@ -27,7 +27,7 @@ function AppLayout({
         selectedSchedule={selectedSchedule}
         setSelectedSchedule={setSelectedSchedule}
       />
-      <main className="overflow-y-auto h-screen ">
+      <main className="min-h-0 flex-1 lg:overflow-hidden">
         <CalendarView selectedSchedule={selectedSchedule} />
       </main>
     </div>

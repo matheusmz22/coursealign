@@ -20,7 +20,7 @@ function ScheduleResults({
 
   return (
     <>
-      <div className="mx-5 mb-5 mt-3">
+      <div className="mb-2 lg:mx-5 lg:mb-5 lg:mt-3">
         <button
           onClick={() => {
             if (courses.length == 0) {
@@ -47,7 +47,7 @@ function ScheduleResults({
           <p className="opacity-65 my-2 text-[13px] font-semibold uppercase">
             {schedules.length} Schedules Found
           </p>
-          <div className="flex flex-col gap-2">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:flex lg:flex-col">
             {schedules.map((schedule) => (
               <div key={schedule.id}>
                 <button

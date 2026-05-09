@@ -29,14 +29,14 @@ function CourseSelector({courses, setCourses, error, setError}) {
 
   return (
     <div className="mb-5">
-      <form className="p-2" onSubmit={handleSubmit}>
-        <p className="opacity-65 mb-2 text-[14px] font-semibold uppercase">
+      <form className="p-0 lg:p-2" onSubmit={handleSubmit}>
+        <p className="opacity-65 mb-2 lg:mb-5 text-[14px] font-semibold uppercase">
           Courses
         </p>
         <div className="relative">
           <input
             placeholder="Search for courses... (CS250)"
-            className="h-9 pr-10 pl-2 placeholder:text-xs rounded-lg text-xs bg-surface placeholder:text-text-secondary-dark/70 w-full text-text-primary-dark"
+            className="h-10 pr-10 pl-3 placeholder:text-xs rounded-lg text-sm bg-surface placeholder:text-text-secondary-dark/70 w-full text-text-primary-dark border border-border/60"
             value={input}
             onChange={(e) => setInput(e.target.value)}
           />
@@ -50,7 +50,7 @@ function CourseSelector({courses, setCourses, error, setError}) {
         {error && <p className="text-error text-xs mt-1 pl-1">{error}</p>}
       </form>
       {courses.length > 0 && (
-        <div className="flex flex-wrap gap-2 m-2">
+        <div className="flex flex-wrap gap-2 mt-3 lg:m-2">
           {courses.map((course) => (
             <div
               key={course}
