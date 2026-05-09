@@ -6,7 +6,7 @@ export function useGenerateSchedule({setSchedules, setSelectedSchedule}) {
     mutationFn: postGenerateSchedule,
     onSuccess: (data) => {
       setSchedules(data);
-      setSelectedSchedule(data[0]);
+      setSelectedSchedule(data[0] ?? null);
     },
     onError: (err) => console.error(err),
   });

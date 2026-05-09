@@ -28,7 +28,7 @@ function ScheduleResults({
               return;
             }
             setError("");
-            generateSchedule({courses, earliestStart, latestEnd});
+            generateSchedule({classes: courses, earliestStart, latestEnd});
           }}
           disabled={isGenerating}
           className="bg-brand-primary text-[15px] cursor-pointer hover:bg-action-hover transition-colors text-text-button hover:text-text-button/80 w-full p-3 rounded-lg flex items-center gap-3 justify-center font-semibold"
