@@ -31,7 +31,7 @@ function ScheduleResults({
             generateSchedule({courses, earliestStart, latestEnd});
           }}
           disabled={isGenerating}
-          className="bg-brand-primary text-[15px] cursor-pointer hover:bg-action-hover transition-colors hover:text-text-secondary-light w-full p-3 rounded-lg flex items-center gap-3 justify-center font-semibold"
+          className="bg-brand-primary text-[15px] cursor-pointer hover:bg-action-hover transition-colors text-text-button hover:text-text-button/80 w-full p-3 rounded-lg flex items-center gap-3 justify-center font-semibold"
         >
           {isGenerating ? (
             <div className="loader loader-white" />

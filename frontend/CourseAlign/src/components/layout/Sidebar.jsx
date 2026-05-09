@@ -19,8 +19,10 @@ function Sidebar({
 
   return (
     <aside className=" overflow-y-auto border-border/50 border-r">
-      <img src="logo.png" className="h-30 w-30 mx-auto mt-2" />
-      <div className="flex flex-col text-text-primary-light divide-y divide-border/50">
+      <div className="mx-auto mt-8 mb-10 w-fit rounded-2xl bg-white/8 px-5 py-4 ring-1 ring-white/10">
+        <img src="logo.png" className="h-30 w-30 mx-auto mt-2" />
+      </div>
+      <div className="flex flex-col -mt-10 text-text-primary-light divide-y divide-border/50">
         <div className="px-4">
           <CourseSelector
             courses={courses}
