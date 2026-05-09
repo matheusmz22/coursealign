@@ -22,5 +22,5 @@ def build_schedule(req: ScheduleBuildRequest):
 
         return schedules
 
-    except Exception:
-        raise HTTPException(status_code=400, detail="Invalid request")
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
