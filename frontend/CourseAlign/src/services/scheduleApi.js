@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:8000";
+const BASE_URL = "https://cs-250-coursealign.onrender.com";
 
 export async function postGenerateSchedule(body) {
   const res = await fetch(`${BASE_URL}/generate-schedule/`, {
@@ -9,7 +9,10 @@ export async function postGenerateSchedule(body) {
     body: JSON.stringify(body),
   });
 
-  if (!res.ok) throw new Error("Failed to generate schedule");
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(errorText || "Failed to generate schedule");
+  }
 
   const data = await res.json();
 
