@@ -35,7 +35,7 @@ def run_cpp_scheduler(classes, earliest_start=None, latest_end=None):
         input=user_input,
         text=True,
         capture_output=True,
-        cwd="../../../cpp_backend",  # change working directory
+        cwd="../cpp_backend",  # change working directory
     )
 
     if result.returncode != 0:
