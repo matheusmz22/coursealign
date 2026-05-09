@@ -18,8 +18,6 @@ function ScheduleResults({
     setSelectedSchedule,
   });
 
-  console.log(schedules);
-
   return (
     <>
       <div className="mx-5 mb-5 mt-3">
@@ -51,10 +49,9 @@ function ScheduleResults({
           </p>
           <div className="flex flex-col gap-2">
             {schedules.map((schedule) => (
-              <>
+              <div key={schedule.id}>
                 <button
-                  key={schedule.id}
-                  className="flex w-full flex-col bg-action-light-1 rounded-lg p-2 gap-1 cursor-pointer hover:bg-action-light-3 transition-colors"
+                  className={`flex w-full flex-col rounded-lg p-2 gap-1 cursor-pointer transition-colors ${selectedSchedule?.id === schedule.id ? "bg-action-light-3 border border-brand-primary" : "bg-action-light-1 border border-transparent hover:bg-action-light-3"}`}
                   onClick={() => setSelectedSchedule(schedule)}
                 >
                   <p className="text-left text-xs text-action-light-7 font-semibold ">
@@ -66,7 +63,7 @@ function ScheduleResults({
                     <p>{schedule.sections.length} courses </p>
                   </div>
                 </button>
-              </>
+              </div>
             ))}
           </div>
         </div>

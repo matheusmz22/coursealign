@@ -35,7 +35,7 @@ function CourseSelector({courses, setCourses, error, setError}) {
         </p>
         <div className="relative">
           <input
-            placeholder="Search for courses... (CS 250)"
+            placeholder="Search for courses... (CS250)"
             className="h-9 pr-10 pl-2 placeholder:text-xs rounded-lg text-xs bg-surface placeholder:text-text-secondary-dark/70 w-full text-text-primary-dark"
             value={input}
             onChange={(e) => setInput(e.target.value)}
