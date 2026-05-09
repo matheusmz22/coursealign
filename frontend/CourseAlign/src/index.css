@@ -1,0 +1,127 @@
+@import "tailwindcss";
+@theme {
+  /*****************/
+  /* BRAND COLORS  */
+  /*****************/
+  --color-brand-primary: #a6192e;
+  --color-action-hover: #8e1426;
+
+  /*****************/
+  /* LEGACY COLORS */
+  /*****************/
+  --color-brand-dark-3: #f4f3f1;
+  --color-brand-dark-1: #e6e4e1;
+
+  --color-surface: #ffffff;
+  --color-border: #d3d0cc;
+
+  --color-text-primary-dark: #1f1f1f;
+  --color-text-secondary-dark: #6b6b66;
+
+  --color-text-primary-light: #1f1f1f;
+  --color-text-secondary-light: #6b6b66;
+
+  --color-text-button: #f9fafb;
+
+  --color-action-light-1: #f8dfe3;
+  --color-action-light-3: #efb8c0;
+  --color-action-light-5: #b77a82;
+  --color-action-light-7: #6f3d43;
+
+  --color-error: #d32f2f;
+  --color-text-badge: #662f33;
+
+  /*****************/
+  /* SEMANTIC COLORS */
+  /*****************/
+  --color-bg-app: var(--color-brand-dark-3);
+  --color-bg-sidebar: var(--color-brand-dark-1);
+  --color-bg-surface: var(--color-surface);
+
+  --color-primary: var(--color-brand-primary);
+  --color-primary-hover: var(--color-action-hover);
+
+  --color-text-main: var(--color-text-primary-dark);
+  --color-text-muted: var(--color-text-secondary-dark);
+
+  --color-accent-soft: var(--color-action-light-1);
+  --color-accent: var(--color-action-light-3);
+  --color-accent-strong: var(--color-action-light-5);
+  --color-accent-dark: var(--color-action-light-7);
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+/* *************** */
+/* LOADING SPINNER*/
+/* ****************/
+.loader {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  position: relative;
+  animation: rotate 1s linear infinite;
+}
+
+.loader::before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 3px solid var(--color-text-primary-light);
+  animation: prixClipFix 2s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes prixClipFix {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0);
+  }
+  25% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
+  }
+  50% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
+  }
+  75% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
+  }
+}
+
+aside::-webkit-scrollbar,
+main::-webkit-scrollbar {
+  width: 4px;
+}
+
+aside::-webkit-scrollbar-track,
+main::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+aside::-webkit-scrollbar-thumb,
+main::-webkit-scrollbar-thumb {
+  background: var(--color-brand-dark-1);
+  border-radius: 999px;
+}
+
+aside::-webkit-scrollbar-thumb:hover,
+main::-webkit-scrollbar-thumb:hover {
+  background: var(--color-action-light-5);
+}
+
+aside,
+main {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brand-dark-1) transparent;
+}
