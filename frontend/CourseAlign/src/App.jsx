@@ -19,10 +19,8 @@ function App() {
   const [selectedSchedule, setSelectedSchedule] = useState(null);
 
   useEffect(() => {
-    if (courses.length === 0) {
-      setSchedules([]);
-      setSelectedSchedule(null);
-    }
+    setSchedules([]);
+    setSelectedSchedule(null);
   }, [courses]);
 
   return (
