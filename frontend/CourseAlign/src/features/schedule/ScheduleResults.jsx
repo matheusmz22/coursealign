@@ -1,5 +1,6 @@
 import {FiZap} from "react-icons/fi";
 import {useGenerateSchedule} from "../../hooks/useGenerateSchedule";
+import {useEffect} from "react";
 
 function ScheduleResults({
   schedules,
@@ -9,14 +10,17 @@ function ScheduleResults({
   courses,
   earliestStart,
   latestEnd,
-  error,
   setError,
 }) {
   const isResults = schedules?.length > 0;
-  const {generateSchedule, isGenerating} = useGenerateSchedule({
+  const {generateSchedule, isGenerating, error, reset} = useGenerateSchedule({
     setSchedules,
     setSelectedSchedule,
   });
+
+  useEffect(() => {
+    reset();
+  }, [courses, reset]);
 
   return (
     <>
@@ -41,12 +45,25 @@ function ScheduleResults({
             </div>
           )}
         </button>
+        {error && (
+          <p className="text-error text-xs mt-1 text-center">
+            {parseError(error.message)}
+          </p>
+        )}
       </div>
       {isResults && (
         <div className="my-2">
           <p className="opacity-65 my-2 text-[13px] font-semibold uppercase">
             {schedules.length} Schedules Found
           </p>
+
+          {schedules.some((s) => s.sections.length < courses.length) && (
+            <p className="text-alert text-center text-sm mb-2">
+              Could not find sections for{" "}
+              {getMissingCourses(courses, schedules[0].sections).join(", ")}{" "}
+              within your time preferences
+            </p>
+          )}
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:flex lg:flex-col">
             {schedules.map((schedule) => (
               <div key={schedule.id}>
@@ -70,6 +87,20 @@ function ScheduleResults({
       )}
     </>
   );
+}
+
+function parseError(message) {
+  try {
+    const parsed = JSON.parse(message);
+    return parsed.detail?.trim() ?? message;
+  } catch {
+    return message;
+  }
+}
+
+function getMissingCourses(courses, sections) {
+  const foundCourses = sections.map((s) => s.courseCode);
+  return courses.filter((course) => !foundCourses.includes(course));
 }
 
 export default ScheduleResults;

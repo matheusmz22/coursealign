@@ -48,6 +48,8 @@
   --color-accent: var(--color-action-light-3);
   --color-accent-strong: var(--color-action-light-5);
   --color-accent-dark: var(--color-action-light-7);
+
+  --color-alert: #f9a825;
 }
 
 * {

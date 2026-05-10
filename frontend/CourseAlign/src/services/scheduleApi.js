@@ -1,4 +1,4 @@
-const BASE_URL = "https://cs-250-coursealign.onrender.com";
+const BASE_URL = "https://coursealign-backend.onrender.com";
 
 export async function postGenerateSchedule(body) {
   const res = await fetch(`${BASE_URL}/generate-schedule/`, {

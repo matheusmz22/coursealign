@@ -6,13 +6,12 @@ const days = ["MON", "TUE", "WED", "THU", "FRI"];
 const hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
 
 const BLOCK_COLORS = [
-  {bg: "#f8d7da", border: "#a6192e", text: "#7a1020"},
-
-  {bg: "#f6dfd2", border: "#b45309", text: "#7c2d12"},
-
-  {bg: "#f5ead1", border: "#a16207", text: "#713f12"},
-
-  {bg: "#ecd9f6", border: "#9333ea", text: "#6b21a8"},
+  {bg: "#fbc8cc", border: "#a6192e", text: "#7a1020"}, // vermelho
+  {bg: "#fad4c0", border: "#b45309", text: "#7c2d12"}, // laranja
+  {bg: "#f5e0a8", border: "#a16207", text: "#713f12"}, // amarelo
+  {bg: "#dfc4f5", border: "#9333ea", text: "#6b21a8"}, // roxo
+  {bg: "#bfe3f5", border: "#0369a1", text: "#0c4a6e"}, // azul
+  {bg: "#bbf0d6", border: "#059669", text: "#064e3b"}, // verde
 ];
 
 function CalendarGrid({selectedSchedule}) {
