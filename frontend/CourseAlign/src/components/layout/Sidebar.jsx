@@ -1,6 +1,6 @@
 import {useState} from "react";
 import CourseSelector from "../../features/courses/CourseSelector";
-import TimeFilters from "../../features/filters/TimeFIlters";
+import TimeFilters from "../../features/filters/TimeFilters";
 import ScheduleResults from "../../features/schedule/ScheduleResults";
 
 function Sidebar({
