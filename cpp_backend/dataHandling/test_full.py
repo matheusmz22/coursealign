@@ -4,7 +4,7 @@ from loader import load_sections, get_sections_by_course, get_all_course_codes
 from cpp_bridge import parse_cpp_output, to_24_hour, run_cpp_scheduler
 
 # ─────────────────────────────────────────
-# SECTION 1: Loader Tests (your existing work)
+# SECTION 1: Loader Tests
 # ─────────────────────────────────────────
 
 CSV_PATH = "testData.csv"
