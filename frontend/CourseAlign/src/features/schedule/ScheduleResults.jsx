@@ -1,6 +1,9 @@
 import {FiZap} from "react-icons/fi";
 import {useGenerateSchedule} from "../../hooks/useGenerateSchedule";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import Pagination from "../../components/ui/Pagination";
+
+const PAGE_SIZE = 8;
 
 function ScheduleResults({
   schedules,
@@ -12,6 +15,8 @@ function ScheduleResults({
   latestEnd,
   setError,
 }) {
+  const [currentPage, setCurrentPage] = useState(1);
+
   const isResults = schedules?.length > 0;
   const {generateSchedule, isGenerating, error, reset} = useGenerateSchedule({
     setSchedules,
@@ -21,6 +26,16 @@ function ScheduleResults({
   useEffect(() => {
     reset();
   }, [courses, reset]);
+
+  const pageCount = Math.ceil(schedules.length / PAGE_SIZE);
+  const paginatedSchedules = schedules.slice(
+    (currentPage - 1) * PAGE_SIZE,
+    currentPage * PAGE_SIZE,
+  );
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [schedules]);
 
   return (
     <>
@@ -65,7 +80,7 @@ function ScheduleResults({
             </p>
           )}
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:flex lg:flex-col">
-            {schedules.map((schedule) => (
+            {paginatedSchedules.map((schedule) => (
               <div key={schedule.id}>
                 <button
                   className={`flex w-full flex-col rounded-lg p-2 gap-1 cursor-pointer transition-colors ${selectedSchedule?.id === schedule.id ? "bg-action-light-3 border border-brand-primary" : "bg-action-light-1 border border-transparent hover:bg-action-light-3"}`}
@@ -83,6 +98,12 @@ function ScheduleResults({
               </div>
             ))}
           </div>
+          <Pagination
+            currentPage={currentPage}
+            pageCount={pageCount}
+            onNext={() => setCurrentPage((p) => p + 1)}
+            onPrev={() => setCurrentPage((p) => p - 1)}
+          />
         </div>
       )}
     </>
