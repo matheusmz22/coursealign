@@ -14,6 +14,8 @@ function Sidebar({
   setSchedules,
   selectedSchedule,
   setSelectedSchedule,
+  hasGenerated,
+  setHasGenerated,
 }) {
   const [error, setError] = useState("");
 
@@ -50,6 +52,8 @@ function Sidebar({
             latestEnd={latestEnd}
             error={error}
             setError={setError}
+            hasGenerated={hasGenerated}
+            setHasGenerated={setHasGenerated}
           />
         </div>
       </div>

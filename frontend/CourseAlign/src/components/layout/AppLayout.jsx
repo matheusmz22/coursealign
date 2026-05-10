@@ -12,6 +12,8 @@ function AppLayout({
   setSchedules,
   selectedSchedule,
   setSelectedSchedule,
+  hasGenerated,
+  setHasGenerated,
 }) {
   return (
     <div className="min-h-screen bg-bg-app lg:flex lg:h-screen lg:overflow-hidden">
@@ -26,6 +28,8 @@ function AppLayout({
         setSchedules={setSchedules}
         selectedSchedule={selectedSchedule}
         setSelectedSchedule={setSelectedSchedule}
+        hasGenerated={hasGenerated}
+        setHasGenerated={setHasGenerated}
       />
       <main className="min-h-0 flex-1 lg:overflow-hidden">
         <CalendarView selectedSchedule={selectedSchedule} />

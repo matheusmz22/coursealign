@@ -17,10 +17,12 @@ function App() {
   const [latestEnd, setLatestEnd] = useState("22:00");
   const [schedules, setSchedules] = useState([]);
   const [selectedSchedule, setSelectedSchedule] = useState(null);
+  const [hasGenerated, setHasGenerated] = useState(false);
 
   useEffect(() => {
     setSchedules([]);
     setSelectedSchedule(null);
+    setHasGenerated(false);
   }, [courses]);
 
   return (
@@ -37,6 +39,8 @@ function App() {
         setSchedules={setSchedules}
         selectedSchedule={selectedSchedule}
         setSelectedSchedule={setSelectedSchedule}
+        hasGenerated={hasGenerated}
+        setHasGenerated={setHasGenerated}
       />
     </QueryClientProvider>
   );
