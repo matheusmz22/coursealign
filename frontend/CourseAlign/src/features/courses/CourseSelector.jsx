@@ -1,8 +1,19 @@
 import {useState} from "react";
 import {FiPlus, FiX} from "react-icons/fi";
+import {useClassesList} from "../../hooks/useClassesList";
 
 function CourseSelector({courses, setCourses, error, setError}) {
   let [input, setInput] = useState("");
+  let [showSuggestions, setShowSuggestions] = useState(false);
+  const {classes, isLoading} = useClassesList();
+
+  const query = input.toLowerCase();
+  const classListSuggestion =
+    input.length >= 3
+      ? (classes ?? [])
+          .filter((course) => course.code.toLowerCase().includes(query))
+          .slice(0, 8)
+      : [];
 
   function handleRemoveCourse(course) {
     setCourses((courseList) =>
@@ -28,7 +39,7 @@ function CourseSelector({courses, setCourses, error, setError}) {
   }
 
   return (
-    <div className="mb-5">
+    <div className="mb-5 flex flex-col">
       <form className="p-0 lg:p-2" onSubmit={handleSubmit}>
         <p className="opacity-65 mb-2 lg:mb-5 text-[14px] font-semibold uppercase">
           Courses
@@ -38,7 +49,10 @@ function CourseSelector({courses, setCourses, error, setError}) {
             placeholder="Search for courses... (CS250)"
             className="h-10 pr-10 pl-3 placeholder:text-xs rounded-lg text-sm bg-surface placeholder:text-text-secondary-dark/70 w-full text-text-primary-dark border border-border/60"
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => {
+              setInput(e.target.value);
+              setShowSuggestions(true);
+            }}
           />
           <button
             type="submit"
@@ -65,6 +79,22 @@ function CourseSelector({courses, setCourses, error, setError}) {
               >
                 <FiX size={15} />
               </button>
+            </div>
+          ))}
+        </div>
+      )}
+      {showSuggestions && classListSuggestion.length > 0 && (
+        <div className="mt-1 mx-2 rounded-lg border border-border/60 bg-surface shadow-md overflow-hidden">
+          {classListSuggestion.map((course) => (
+            <div
+              className="px-3 py-2 text-sm text-text-primary-dark hover:bg-action-light-1 cursor-pointer transition-colors"
+              key={course.id}
+              onClick={() => {
+                setInput(course.code);
+                setShowSuggestions(false);
+              }}
+            >
+              {course.code}
             </div>
           ))}
         </div>
