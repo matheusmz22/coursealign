@@ -5,7 +5,7 @@ import {useClassesList} from "../../hooks/useClassesList";
 function CourseSelector({courses, setCourses, error, setError}) {
   let [input, setInput] = useState("");
   let [showSuggestions, setShowSuggestions] = useState(false);
-  const {classes, isLoading} = useClassesList();
+  const {classes} = useClassesList();
 
   const query = input.toLowerCase();
   const classListSuggestion =
@@ -28,19 +28,29 @@ function CourseSelector({courses, setCourses, error, setError}) {
 
     if (!formatted) return;
 
-    if (courses.some((c) => normalize(c) === normalize(formatted))) {
-      setError("Course already added");
+    const courseExists = (classes ?? []).some(
+      (course) => normalize(course.code) === formatted,
+    );
+
+    if (!courseExists) {
+      setError(`Class not found: ${formatted}`);
+      return;
+    }
+
+    if (courses.some((c) => normalize(c) === formatted)) {
+      setError("Class already added");
       return;
     }
 
     setError("");
     setCourses((courses) => [...courses, formatted]);
     setInput("");
+    setShowSuggestions(false);
   }
 
   function handleClickSuggestion(course) {
     if (courses.some((c) => normalize(c) === normalize(course))) {
-      setError("Course already added");
+      setError("Class already added");
       return;
     }
     setError("");
@@ -48,6 +58,8 @@ function CourseSelector({courses, setCourses, error, setError}) {
     setInput("");
     setShowSuggestions(false);
   }
+
+  const shouldShowDropdown = showSuggestions && input.length >= 3;
 
   return (
     <div className="mb-5 flex flex-col">
@@ -57,12 +69,13 @@ function CourseSelector({courses, setCourses, error, setError}) {
         </p>
         <div className="relative">
           <input
-            placeholder="Search for courses... (CS250)"
+            placeholder="Search for classes... (CS250)"
             className="h-10 pr-10 pl-3 placeholder:text-xs rounded-lg text-sm bg-surface placeholder:text-text-secondary-dark/70 w-full text-text-primary-dark border border-border/60"
             value={input}
             onChange={(e) => {
               setInput(e.target.value);
               setShowSuggestions(true);
+              setError("");
             }}
           />
           <button
@@ -94,19 +107,27 @@ function CourseSelector({courses, setCourses, error, setError}) {
           ))}
         </div>
       )}
-      {showSuggestions && classListSuggestion.length > 0 && (
-        <div className="mt-1 mx-2 rounded-lg border border-border/60 bg-surface shadow-md overflow-hidden">
-          {classListSuggestion.map((course) => (
-            <div
-              className="px-3 py-2 text-sm text-text-primary-dark hover:bg-action-light-1 cursor-pointer transition-colors"
-              key={course.id}
-              onClick={() => handleClickSuggestion(course.code)}
-            >
-              {course.code}
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="mt-1 mx-2 rounded-lg bg-surface shadow-md overflow-hidden">
+        {shouldShowDropdown && (
+          <div>
+            {classListSuggestion.length > 0 ? (
+              classListSuggestion.map((course) => (
+                <div
+                  className="px-3 py-2 text-sm text-text-primary-dark hover:bg-action-light-1 cursor-pointer transition-colors"
+                  key={course.id}
+                  onClick={() => handleClickSuggestion(course.code)}
+                >
+                  {course.code}
+                </div>
+              ))
+            ) : (
+              <div className="px-3 py-2 text-sm text-text-secondary-dark">
+                No classes found
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -44,10 +44,13 @@ function ScheduleResults({
       <div className="mb-2 lg:mx-5 lg:mb-5 lg:mt-3">
         <button
           onClick={() => {
+            reset();
+
             if (courses.length === 0) {
-              setError("Please add at least one course");
+              setError("Please add at least one class");
               return;
             }
+
             setError("");
             setHasGenerated(true);
             generateSchedule({classes: courses, earliestStart, latestEnd});
@@ -87,11 +90,9 @@ function ScheduleResults({
               within your time preferences
             </p>
           )}
-          {schedules.length === 0 &&
-            !isGenerating &&
-            schedules !== initialState && (
-              <p>No schedules found. Try adjusting your time preferences.</p>
-            )}
+          {schedules.length === 0 && !isGenerating && (
+            <p>No schedules found. Try adjusting your time preferences.</p>
+          )}
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:flex lg:flex-col">
             {paginatedSchedules.map((schedule) => (
               <div key={schedule.id}>
