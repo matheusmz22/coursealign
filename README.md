@@ -1,4 +1,4 @@
-# CourseAlign — SDSU Schedule Builder
+# CourseAlign - SDSU Schedule Builder
 
 > A full-stack web application that helps San Diego State University students generate and visualize conflict-free class schedules based on their course preferences and time constraints.
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-CourseAlign was born from a real problem: SDSU's existing class search experience makes it frustrating to plan a semester without conflicts. Students have to manually cross-reference course times, sections, and availability — a tedious process with no visual feedback.
+CourseAlign was born from a real problem: SDSU's existing class search experience makes it frustrating to plan a semester without conflicts. Students have to manually cross-reference course times, sections, and availability, a tedious process with no visual feedback.
 
 This project solves that. Students select the courses they want, set their preferred time window, and CourseAlign generates every possible conflict-free schedule combination and displays them in a clean, interactive weekly calendar view.
 
@@ -18,13 +18,13 @@ This project solves that. Students select the courses they want, set their prefe
 
 This was a college project built in two phases across two different groups.
 
-**Phase 1 — Original Group:** Built the core C++ scheduling algorithm and compiled the dataset — a CSV file containing real Spring 2026 SDSU course sections with days, times, instructors, and room data.
+**Phase 1 - Original Group:** Built the core C++ scheduling algorithm and compiled the dataset, a CSV file containing real Spring 2026 SDSU course sections with days, times, instructors, and room data.
 
-**Phase 2 — Our Group:** Took the C++ algorithm and turned it into a deployable, production-ready full-stack application. My group was responsible for wrapping the algorithm into a REST API and building the entire frontend experience.
+**Phase 2 - Our Group:** Took the C++ algorithm and turned it into a deployable, production-ready full-stack application. My group was responsible for wrapping the algorithm into a REST API and building the entire frontend experience.
 
 ---
 
-## My Role — Frontend Engineer
+## My Role - Frontend Engineer
 
 I was solely responsible for the entire frontend of this project, from architecture decisions to final deployment. This included:
 
@@ -63,7 +63,7 @@ Before writing a single component, I designed a complete design system inspired 
 
 ### Schedule Generator
 - Generate button with loading spinner state (custom CSS animation)
-- Full error handling — surfaces real API error messages instead of generic failures
+- Full error handling, surfaces real API error messages instead of generic failures
 - Validation before API call (empty course list check)
 - Auto-selects first result after generation
 
@@ -116,8 +116,8 @@ Before writing a single component, I designed a complete design system inspired 
 | Render | Backend deployment |
 
 **API Endpoints:**
-- `GET /courses` — returns available courses
-- `POST /generate-schedule` — accepts course list + time preferences, returns all valid schedule combinations
+- `GET /courses` returns available courses
+- `POST /generate-schedule` accepts course list + time preferences, returns all valid schedule combinations
 
 ---
 
@@ -167,7 +167,7 @@ The C++ binary was compiled on Windows/macOS but the backend runs on Linux (Rend
 Navigated CORS configuration across three environments: local dev (`localhost:5173`), deployed backend (`onrender.com`), and deployed frontend (`vercel.app`). Each transition required coordination with the backend team to update allowed origins.
 
 **Input Normalization**
-Course codes needed to be consistent regardless of how users typed them — `"cs 250"`, `"CS 250"`, `"CS250"` all needed to map to the same identifier. Implemented a `normalize` function that strips whitespace and uppercases before comparison, while storing the formatted version for display.
+Course codes needed to be consistent regardless of how users typed them, `"cs 250"`, `"CS 250"`, `"CS250"` all needed to map to the same identifier. Implemented a `normalize` function that strips whitespace and uppercases before comparison, while storing the formatted version for display.
 
 ---
 
@@ -203,7 +203,7 @@ npm run dev
 
 This project pushed me to think beyond just writing components. Diagnosing the cross-platform binary issue, managing git history across a forked repo and Vercel deployment, and coordinating API contracts with a backend team all gave me real-world engineering experience that goes well beyond typical coursework.
 
-The calendar rendering was particularly satisfying — building a pixel-precise time grid from scratch without any calendar library forced me to deeply understand CSS positioning and time arithmetic.
+The calendar rendering was particularly satisfying, building a pixel-precise time grid from scratch without any calendar library forced me to deeply understand CSS positioning and time arithmetic.
 
 ---
 
