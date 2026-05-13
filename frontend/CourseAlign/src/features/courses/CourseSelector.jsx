@@ -38,6 +38,17 @@ function CourseSelector({courses, setCourses, error, setError}) {
     setInput("");
   }
 
+  function handleClickSuggestion(course) {
+    if (courses.some((c) => normalize(c) === normalize(course))) {
+      setError("Course already added");
+      return;
+    }
+    setError("");
+    setCourses((courses) => [...courses, course]);
+    setInput("");
+    setShowSuggestions(false);
+  }
+
   return (
     <div className="mb-5 flex flex-col">
       <form className="p-0 lg:p-2" onSubmit={handleSubmit}>
@@ -89,10 +100,7 @@ function CourseSelector({courses, setCourses, error, setError}) {
             <div
               className="px-3 py-2 text-sm text-text-primary-dark hover:bg-action-light-1 cursor-pointer transition-colors"
               key={course.id}
-              onClick={() => {
-                setInput(course.code);
-                setShowSuggestions(false);
-              }}
+              onClick={() => handleClickSuggestion(course.code)}
             >
               {course.code}
             </div>
